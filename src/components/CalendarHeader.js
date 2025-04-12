@@ -39,7 +39,8 @@ export default function CalendarHeader({ view, setView,dateRange, setDateRange }
         <h1 className="text-xl font-bold text-red-500">Appointments</h1>
         <div className="flex items-center gap-2">
           <Sun className="h-5 w-5" />
-          <Switch defaultChecked />
+          <Switch defaultChecked={false}    disabled={true}
+           />
           <span className="text-sm">Apply Dark Theme</span>
         </div>
       </div>
