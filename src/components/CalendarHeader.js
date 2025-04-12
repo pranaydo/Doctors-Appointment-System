@@ -45,10 +45,11 @@ export default function CalendarHeader({ view, setView,dateRange, setDateRange }
       </div>
 
       <div className="flex justify-between items-center mx-4">
-        <RangePicker presets={rangePresets} onChange={onRangeChange} />
-
+{
+  view !== 'MONTH' ?
+        <RangePicker presets={rangePresets} onChange={onRangeChange} /> :<div></div>
+}
         <div className="flex items-center gap-4">
-          <CirclePlus className="cursor-pointer" />
           <Radio.Group
             value={view}
             onChange={(e) => setView(e.target.value)}
