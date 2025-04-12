@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "@/components/SideNav";
 import TopNav from "@/components/TopNav";
 import { ContextProvider } from '@/components/Context/AppointmentContext';
+import Notification from "@/components/utils/Notification";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       <body className="h-screen overflow-hidden">
         <div className="flex h-full">
         <ContextProvider >
+        <Notification />
           <aside className="hidden md:block">
             <Sidebar />
           </aside>
