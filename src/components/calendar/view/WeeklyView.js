@@ -10,7 +10,7 @@ for (let h = 9; h <= 16; h++) {
 }
 
 export default function WeekView({
-  allAppointments,
+  filteredAppointments,
   onSlotClick,
   dateRange
 }) {
@@ -34,15 +34,11 @@ export default function WeekView({
     const slotHour = parseInt(hourStr);
     const slotMinute = parseInt(minuteStr);
     
-    // Disable if date is in past
     if (dateStr < today) return true;
-    
-    // For current day, disable if time has passed
     if (dateStr === today) {
       return slotHour < currentHour || 
              (slotHour === currentHour && slotMinute < currentMinute);
     }
-    
     return false;
   };
 
@@ -50,7 +46,7 @@ export default function WeekView({
     if (isSlotDisabled(date, time)) return;
     
     const dateStr = date.format("YYYY-MM-DD");
-    const foundAppt = allAppointments.find(
+    const foundAppt = filteredAppointments.find(
       (appt) => appt.slot?.date === dateStr && appt.slot?.time === time
     );
     onSlotClick(dateStr, time, foundAppt);
@@ -83,7 +79,7 @@ export default function WeekView({
           {rangeDays.map((day) => {
             const dateStr = day.format("YYYY-MM-DD");
             const isDisabled = isSlotDisabled(day, time);
-            const appointment = allAppointments.find(
+            const appointment = filteredAppointments.find(
               (appt) => appt.slot?.date === dateStr && appt.slot?.time === time
             );
 

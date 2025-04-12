@@ -10,16 +10,11 @@ export default function CalendarLayout({ view, dateRange }) {
   const [selectedSlot, setSelectedSlot] = useState({ date: "", time: "" });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingAppointment, setEditingAppointment] = useState(null);
-  const { allAppointments } = useAppointmentContext();
+  const { filteredAppointments } = useAppointmentContext();
 
-  const handleSlotSelection = (date, time) => {
-    const dateStr = date.format ? date.format("YYYY-MM-DD") : date;
-    const foundAppt = allAppointments.find(
-      appt => appt.slot?.date === dateStr && appt.slot?.time === time
-    );
-    
-    setSelectedSlot({ date: dateStr, time });
-    setEditingAppointment(foundAppt || null);
+  const handleSlotSelection = (date, time, appointment = null) => {
+    setSelectedSlot({ date, time });
+    setEditingAppointment(appointment); // This will be null for new appointments
     setIsModalOpen(true);
   };
 
@@ -27,13 +22,13 @@ export default function CalendarLayout({ view, dateRange }) {
     <div className="w-full border border-gray-200 rounded-lg p-2">
       {view === "WEEK" ? (
         <WeekView
-          allAppointments={allAppointments}
+          filteredAppointments={filteredAppointments}
           onSlotClick={handleSlotSelection}
           dateRange={dateRange}
         />
       ) : (
         <MonthView
-          allAppointments={allAppointments}
+          filteredAppointments={filteredAppointments}
           onSlotClick={handleSlotSelection}
         />
       )}

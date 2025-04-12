@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/SideNav";
 import TopNav from "@/components/TopNav";
+import { ContextProvider } from '@/components/Context/AppointmentContext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="h-screen overflow-hidden">
         <div className="flex h-full">
+        <ContextProvider >
           <aside className="hidden md:block">
             <Sidebar />
           </aside>
@@ -31,6 +33,7 @@ export default function RootLayout({ children }) {
             <TopNav className="md:hidden block" />
             {children}
           </main>
+    </ContextProvider>
         </div>
       </body>
     </html>
