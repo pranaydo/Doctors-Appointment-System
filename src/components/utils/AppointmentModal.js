@@ -15,6 +15,7 @@ import { ClockCircleOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useAppointmentContext } from "../Context/AppointmentContext";
 import { dummyDoctors } from "./DummyDoctorsList";
+import { showNotification } from "./Notification";
 
 export default function AppointmentModal({
   isModalOpen,
@@ -25,7 +26,6 @@ export default function AppointmentModal({
 }) {
   const [form] = Form.useForm();
   const { allAppointments, setAllAppointments } = useAppointmentContext();
-  const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     if (isModalOpen && editingAppointment) {
@@ -63,9 +63,14 @@ export default function AppointmentModal({
       setAllAppointments(prev => [...prev, updatedAppointment]);
     }
 
-    notification.success({
-      message: editingAppointment ? "Appointment Updated" : "Appointment Created",
-      description: `Appointment was successfully ${editingAppointment ? 'updated' : 'created'}.`
+    showNotification({
+      type: 'success',
+      message: editingAppointment ? "Appointment Updated" : "Appointment Booked",
+      description: editingAppointment 
+        ? "Your appointment details are successfully updated."
+        : "Your appointment is successfully booked.",
+      duration: 5,
+
     });
 
     handleClose();
@@ -73,9 +78,11 @@ export default function AppointmentModal({
 
   const handleDelete = () => {
     setAllAppointments(prev => prev.filter(appt => appt.id !== editingAppointment.id));
-    notification.success({
-      message: "Appointment Deleted",
-      description: "Appointment was successfully deleted."
+    showNotification({
+      type: 'error',
+      message: 'Successfully Deleted',
+      description: 'Your appointment is deleted successfully.',
+      duration: 5,
     });
     handleClose();
   };
@@ -88,7 +95,7 @@ export default function AppointmentModal({
 
   return (
     <>
-      {contextHolder}
+      {/* {contextHolder} */}
       <Modal
         title={editingAppointment ? "EDIT APPOINTMENT" : "NEW APPOINTMENT"}
         open={isModalOpen}
