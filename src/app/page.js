@@ -1,7 +1,6 @@
 'use client';
 import Calendar from '@/components/calendar/Calendar';
 import CalendarHeader from '@/components/CalendarHeader';
-import { ContextProvider } from '@/components/Context/AppointmentContext';
 
 import { useState } from 'react';
 
@@ -12,14 +11,12 @@ export default function HomePage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 
-  return (
-    <ContextProvider >
+  return ( 
       <div className="flex flex-col h-full max-h-screen bg-white">
         <div>
           <Calendar />
         </div>
 
       </div>
-    </ContextProvider>
   );
 }
