@@ -50,3 +50,27 @@ Again created topnav and calling after sidenav
 so the basic strucre is created now i am ready to create Calender Component
 Basic Layout of calender is created and called in page.js
 # Doctors-Appointment-System
+
+Monthly and Weekly calendar views
+Appointment creation, editing, and deletion
+notification toaster added using ant design for create updatae and delete with the status icon
+Ant design library installed
+Modal importedform Ant Design
+used modal and range picker from antd 
+icons imported firm lucide react 
+search doctor functionlity addded 
+
+
+Dark and Light mode toggle using Context API and localStorage was part of the roadmap. However, it wasn't implemented in this version due to time constraints.
+Reason: I had an ongoing production release in my current role, which focused heavily on dark/light mode rollout, so I had to prioritize that.
+
+Additional Enhancements
+There are several areas where this project can be further enhanced, such as:
+
+Accessibility improvements
+Notification/toast system for booking updates or we can send mail or message notification 
+Role-based access and login
+Backend integration and authentication
+
+Due to limited time, these features have been deferred to a future version.
+
